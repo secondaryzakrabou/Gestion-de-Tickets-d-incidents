@@ -1,0 +1,98 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<html lang="en">
+
+<head th:replace="fragments/header :: header">
+</head>
+<body>
+
+<div id="body" class="theme-cyan">
+
+    <div th:replace="fragments/loader :: loader">
+	</div>
+
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+
+    <div id="wrapper">
+
+		<nav th:replace="fragments/navbar :: navbar">
+		</nav>
+
+        <div th:replace="fragments/sidebar :: sidebar">
+        </div>
+
+
+
+        <!-- Main body part  -->
+        <div id="main-content">
+            <div class="container-fluid">
+                <!-- Page header section  -->
+                <div class="block-header">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <h1>Nouveau ticket</h1>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12">
+
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-7">
+                        <div class="card">
+                            <div class="header">
+                                <h2>Ajouter un ticket</h2>
+                            </div>
+                            <form method="post" th:action="@{/client/new_ticket}"  class="body">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group c_form_group">
+                                            <label>description</label>
+                                            <input name="description" type="text" class="form-control" placeholder="Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group c_form_group">
+                                            <label>Environement</label>
+                                            <input name="env" type="text" class="form-control" placeholder="Environement">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group c_form_group">
+                                            <label>Logiciel</label>
+                                            <input name="logiciel" type="text" class="form-control" placeholder="Logiciel">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group c_form_group">
+                                            <label>Urgence</label>
+                                            <select name="urgence" class="form-control">
+                                                <option value="critique">Etat critique</option>
+                                                <option value="urgent">Etat urgent</option>
+                                                <option value="normal">Etat normal</option>
+                                                <option value="non-urgent">Etat non-urgent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary theme-bg gradient">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+</div >
+        </div>
+
+    </div>
+
+</div>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+</body>
+</html>

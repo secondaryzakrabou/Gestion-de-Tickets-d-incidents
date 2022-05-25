@@ -1,0 +1,127 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<html lang="en">
+
+<head th:replace="fragments/header :: header">
+</head>
+<body>
+
+<div id="body" class="theme-cyan">
+
+    <div th:replace="fragments/loader :: loader">
+	</div>
+
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+
+    <div id="wrapper">
+
+		<nav th:replace="fragments/navbar :: navbar">
+		</nav>
+
+        <div th:replace="fragments/sidebar :: sidebar">
+        </div>
+
+
+
+        <!-- Main body part  -->
+        <div id="main-content">
+            <div class="container-fluid">
+                <!-- Page header section  -->
+                <div class="block-header">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <h1> Administrateur</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+
+                    <div class="col-xl-4 col-lg-4 col-md-5">
+                        <div class="card">
+                            <div class="header">
+                                <h2>Affecter un ticket à un developpeur !</h2>
+                            </div>
+                            <form th:action="@{/admin/assign}" th:method="POST" class="body">
+                                <div class="row clearfix">
+                                	<div class="col-md-12">
+                                        <div class="form-group c_form_group">
+                                            <label>Ticket</label>
+                                            <select name="ticket_id"  class="form-control">
+                                                <option th:each="ticket: ${tickets}" th:value="${ticket.id}" th:text="${ticket.description}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <div class="form-group c_form_group">
+                                            <label>Developpeur</label>
+                                            <select name="dev_id"  class="form-control">
+                                                <option th:each="dev: ${devs}" th:value="${dev.id}" th:text="${dev.username}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="mb-2">
+                                            <button type="submit" class="btn btn-primary theme-bg gradient">Affecter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-7">
+                        <div class="card">
+                            <div class="header">
+                                <h2>Liste des tickets non attribués</h2>
+                            </div>
+                            <div class="body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                		<th>Description</th>
+                                		<th>Envirennemnt</th>
+                                		<th>Logiciel</th>
+                                		<th>Urgence</th>
+                                		<th>Etat</th>
+                                	</thead>
+                                    <tbody>
+
+                                        <tr th:each="ticket : ${tickets}">
+                                        	<td>
+                                                <p class="mb-0" th:text="${ticket.description}"></p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 " th:text="${ticket.env}"></p>
+                                            </td>
+                                               	<td >
+                                                <p class="mb-0 " th:text="${ticket.Logiciel}"></p>
+                                            </td>
+                                            </td>
+                                               	<td >
+                                                <p class="mb-0 " th:text="${ticket.Urgence}"></p>
+                                            </td>
+                                            </td>
+                                               	<td >
+                                                <p class="mb-0 " th:text="${ticket.etat}"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+</body>
+</html>
